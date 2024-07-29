@@ -2,9 +2,9 @@ import './header.css';
 
 function Header() {
   return (
-    <div className='header-container'>
+    <header className='header-container'>
       <h1>Dashboard</h1>
-    </div>
+    </header>
   );
 }
 
