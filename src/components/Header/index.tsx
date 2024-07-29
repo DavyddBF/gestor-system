@@ -2,8 +2,8 @@ import './header.css';
 
 function Header() {
   return (
-    <div>
-      HEADER
+    <div className='header-container'>
+      <h1>Dashboard</h1>
     </div>
   );
 }
