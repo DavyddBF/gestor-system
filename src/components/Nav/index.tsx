@@ -2,7 +2,25 @@ import './nav.css';
 
 function Nav() {
   return (
-    <div>NAV</div>
+    <nav className='nav-container'>
+      <ul>
+        <li className='nav-lista'>
+          <a className='nav-lista--link' href="#">Algum item</a>
+        </li>
+        <li className='nav-lista'>
+          <a className='nav-lista--link' href="#">Algum item</a>
+        </li>
+        <li className='nav-lista'>
+          <a className='nav-lista--link' href="#">Algum item</a>
+        </li>
+        <li className='nav-lista'>
+          <a className='nav-lista--link' href="#">Algum item</a>
+        </li>
+        <li className='nav-lista'>
+          <a className='nav-lista--link' href="#">Algum item</a>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
