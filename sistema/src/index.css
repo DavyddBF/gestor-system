@@ -7,4 +7,5 @@
 
 button {
   cursor: pointer;
+  transition: all .5s;
 }
