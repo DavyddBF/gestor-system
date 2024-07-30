@@ -1,0 +1,86 @@
+.clientes-container {
+  width: 100%;
+  padding: 2rem;
+}
+
+.clientes-campo {
+  margin-bottom: 3rem;
+  margin-left: 5rem;
+}
+
+.clientes-pesquisa {
+  border: 1px solid #000;
+  width: 20%;
+  padding: .5rem;
+}
+
+.clientes-pesquisa--btn {
+  border: 1px solid #000;
+  padding: .5rem 1.5rem;
+}
+
+.cliente-container {
+  border: 2px solid #000;
+  width: 90%;
+  margin-left: 3rem;
+}
+
+.cliente {
+  padding: 1rem 2rem;
+}
+
+.cliente div {
+  display: flex;
+  align-items: center;
+}
+
+.cliente div:nth-child(1) {
+  justify-content: space-between;
+}
+
+.cliente div:nth-child(1),
+.cliente div:nth-child(2){
+  margin-bottom: 1rem;
+}
+
+.cliente div:nth-child(3) {
+  justify-content: space-between;
+  align-items: normal;
+}
+
+.cliente-img {
+  background-color: #a5a5a5;
+  padding: .5rem;
+  border-radius: 100%;
+  margin-right: 1rem;
+}
+
+.cliente-info--btn, 
+.cliente-btn--feito, 
+.cliente-btn--editar {
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 1rem;
+  padding: .3rem 1rem;
+}
+
+.cliente-ultimo--servico,
+.cliente-prox--servico,
+.cliente-valor {
+  font-weight: 700;
+}
+
+.cliente-ultimo--servico span,
+.cliente-prox--servico span,
+.cliente-valor span {
+  font-weight: 400;
+}
+
+.cliente-ultimo--servico {
+  padding-right: 3rem;
+}
+
+.cliente-valor {
+  padding-right: 5rem;
+}
