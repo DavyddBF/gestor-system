@@ -2,14 +2,14 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import Teste from './pages/Teste';
+import Clientes from './pages/Clientes';
 
 function RouterApp() {
   return (
     <Routes>
       <Route path='/' element={ <Home/> } />
       <Route path='/dashboard' element={ <Dashboard/> } />
-      <Route path='/dashboard/teste' element={ <Teste/> } />
+      <Route path='/dashboard/teste' element={ <Clientes/> } />
     </Routes>
   );
 }
