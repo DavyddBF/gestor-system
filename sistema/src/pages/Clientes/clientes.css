@@ -1,5 +1,6 @@
 .clientes-container {
   width: 100%;
+  height: 100%;
   padding: 2rem;
 }
 
@@ -23,7 +24,7 @@
   border: 2px solid #000;
   border-radius: 10px;
   width: 90%;
-  margin: auto;
+  margin: 1.5rem auto;
 }
 
 .cliente {
@@ -64,6 +65,12 @@
   font-weight: 700;
   margin-left: 1rem;
   padding: .3rem 1rem;
+}
+
+.cliente-info--btn:hover, 
+.cliente-btn--feito:hover, 
+.cliente-btn--editar:hover {
+  background-color: #979797;
 }
 
 .cliente-ultimo--servico,
