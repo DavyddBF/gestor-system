@@ -6,7 +6,7 @@ function Nav() {
     <nav className='nav-container'>
       <ul>
         <li className='nav-lista'>
-          <Link className='nav-lista--link' to='/dashboard/teste'>Todos clientes</Link>
+          <Link className='nav-lista--link' to='/dashboard/clientes'>Todos clientes</Link>
         </li>
         <li className='nav-lista'>
           <Link className='nav-lista--link' to='/'>Algum item</Link>
