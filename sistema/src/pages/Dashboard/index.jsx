@@ -10,7 +10,7 @@ function Dashboard() {
       <main className="main-container">
         <div className="main-div">
           <Nav/>
-          <h1>Dashboard aqui!!</h1>
+          <h1>Dashboard</h1>
         </div>
       </main>
     </>

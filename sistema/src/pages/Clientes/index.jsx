@@ -73,12 +73,11 @@ function Clientes() {
               <button className='clientes-pesquisa--btn'>Buscar</button>
               <button className='clientes-pesquisa--btn' onClick={ buscarTodosClientes }>Atualizar</button>
             </div>
-            <div className='cliente-container'>
+            
               {
                 clientes.map( cliente => {
                   return (
-                    
-                      <div className='cliente' key={ cliente.id }>
+                      <div className='cliente cliente-container' key={ cliente.id }>
                         <div>
                           <div>
                             <img className='cliente-img' src={ iconPessoa } alt="Icone de Perfil" />
@@ -92,7 +91,7 @@ function Clientes() {
                         </div>
                         
                         <div>
-                          <p className='cliente-valor'>Valor cobrado: <span>{ cliente.valor }</span></p>
+                          <p className='cliente-valor'>Valor cobrado: <span>R$ { cliente.valor }</span></p>
                           <div>
                             <button className='cliente-btn--feito'>Feito!!</button>
                             <button className='cliente-btn--editar'>Editar</button>
@@ -102,7 +101,6 @@ function Clientes() {
                   );
                 })
               }
-            </div>
           </div>
         </div>
       </main>
