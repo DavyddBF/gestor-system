@@ -1,0 +1,35 @@
+.cadastrar-cliente-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cadastrar-cliente-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cadastrar-cliente-p {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+}
+
+.cadastrar-cliente-btn {
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  background-color: #6ae1ff;
+  color: #000;
+}
+
+.cadastrar-cliente-btn:hover {
+  color: #fff;
+  background-color: #4fa7bd;
+}
