@@ -9,7 +9,7 @@ function Nav() {
           <Link className='nav-lista--link' to='/dashboard/clientes'>Clientes</Link>
         </li>
         <li className='nav-lista'>
-          <Link className='nav-lista--link' to='/'>Add Cliente</Link>
+          <Link className='nav-lista--link' to='/dashboard/clientes/cadastrar'>Add Cliente</Link>
         </li>
         <li className='nav-lista'>
           <Link className='nav-lista--link' to='/'>Excluir Cliente</Link>
