@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { collection, doc, getDoc, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import iconPessoa from '../../assets/pessoa-icon.svg';
 
@@ -12,7 +12,13 @@ import Nav from "../../components/Nav";
 function Clientes() {
   const [clientes, setClientes] = useState([]);
   const [cliente, setCliente] = useState({});
-  const [clienteInfo, setClienteInfo] = useState(false);
+
+  const [inputNome, setInputNome] = useState('');
+  const [inputTelefone, setInputTelefone] = useState('');
+  const [inputComplemento, setInputComplemento] = useState('');
+  const [inputUltimaData, setInputUltimaData] = useState('');
+  const [inputProxData, setInputProxData] = useState('');
+  const [inputValor, setInputValor] = useState('');
 
   useEffect(() => {
     async function carregaClientes() {
@@ -25,6 +31,7 @@ function Clientes() {
             id: cliente.id,
             nome: cliente.data().nome,
             telefone: cliente.data().telefone,
+            complemento: cliente.data().complemento,
             ultimaData: cliente.data().ultimaData,
             proxData: cliente.data().proxData,
             valor: cliente.data().valor
@@ -65,12 +72,7 @@ function Clientes() {
     });
   }
 
-  async function buscaClienteInfo(id) {
-    const overlay = document.querySelector('.info-overlay');
-    const infoContainer = document.querySelector('.info-container');
-
-    overlay.style.display = 'block';
-    infoContainer.style.display = 'flex';
+  async function buscaClienteInfo(id, classeBtn) {
 
     const refDoc = doc(db, 'clientes', id);
     await getDoc(refDoc)
@@ -84,16 +86,50 @@ function Clientes() {
         proxData: snapshot.data().proxData,
         valor: snapshot.data().valor
       });
-      setClienteInfo(true);
+
+      if(classeBtn === 'cliente-info--btn') {
+        document.querySelectorAll('.info-overlay')[0].style.display = 'block';
+        document.querySelectorAll('.info-container')[0].style.display = 'flex';
+      } else if (classeBtn === 'cliente-btn--editar') {
+        setInputNome(snapshot.data().nome);
+        setInputTelefone(snapshot.data().telefone);
+        setInputComplemento(snapshot.data().complemento);
+        setInputUltimaData(snapshot.data().ultimaData);
+        setInputProxData(snapshot.data().proxData);
+        setInputValor(snapshot.data().valor);
+
+        document.querySelectorAll('.info-overlay')[1].style.display = 'block';
+        document.querySelectorAll('.info-container')[1].style.display = 'flex';
+        
+      }
+
     });
   }
 
-  function fecharInfos() {
-    const overlay = document.querySelector('.info-overlay');
-    const infoContainer = document.querySelector('.info-container');
+  function fecharInfos(classeBtn) {
+    if(classeBtn === 'info-fechar') {
+      document.querySelectorAll('.info-overlay')[0].style.display = 'none';
+      document.querySelectorAll('.info-container')[0].style.display = 'none';
+    } else if (classeBtn === 'info-editar-fechar') {
+      document.querySelectorAll('.info-overlay')[1].style.display = 'none';
+      document.querySelectorAll('.info-container')[1].style.display = 'none';
+    }
+  }
 
-    overlay.style.display = 'none';
-    infoContainer.style.display = 'none';
+  async function editarCliente(id) {
+    const refDoc = doc(db, 'clientes', id);
+
+    await updateDoc(refDoc, {
+        nome: inputNome,
+        telefone: inputTelefone,
+        complemento: inputComplemento,
+        ultimaData: inputUltimaData,
+        proxData: inputProxData,
+        valor: inputValor
+    })
+    .then(() => {
+
+    })
   }
 
   return (
@@ -119,7 +155,7 @@ function Clientes() {
                             <img className='cliente-img' src={ iconPessoa } alt="Icone de Perfil" />
                             <strong className='cliente-nome'>{ cliente.nome }</strong>
                           </div>
-                          <button onClick={ () => buscaClienteInfo(cliente.id) } className='cliente-info--btn'>Infos</button>
+                          <button onClick={ event => buscaClienteInfo(cliente.id, event.target.className) } className='cliente-info--btn'>Infos</button>
                         </div>
                         <div>
                           <p className='cliente-ultimo--servico'>Ultimo serviço: <span>{ cliente.ultimaData }</span></p>
@@ -130,7 +166,7 @@ function Clientes() {
                           <p className='cliente-valor'>Valor cobrado: <span>R$ { cliente.valor }</span></p>
                           <div>
                             <button className='cliente-btn--feito'>Feito!!</button>
-                            <button className='cliente-btn--editar'>Editar</button>
+                            <button onClick={ event => buscaClienteInfo(cliente.id, event.target.className) } className='cliente-btn--editar'>Editar</button>
                           </div>
                         </div>
                       </div>
@@ -138,37 +174,91 @@ function Clientes() {
                 })
               }
 
-              {
-                clienteInfo && 
-                <>
-                  <div className="info-overlay"></div>
-                  <div className='info-container'>
-                    <div>
-                      <img className='cliente-img' src={ iconPessoa } alt="Icone de Perfil" />
-                      <strong className='cliente-nome'>{ cliente.nome }</strong>
-                    </div>
-                    <ul>
-                      <li>
-                        <p>Telefone/Celular: <span>{ cliente.telefone }</span></p>
-                      </li>
-                      <li>
-                        <p>Complemento: <span>{ cliente.complemento }</span></p>
-                      </li>
-                      <li>
-                        <p>Ultimo serviço: <span>{ cliente.ultimaData }</span></p>
-                      </li>
-                      <li>
-                        <p>Próximo serviço: <span>{ cliente.proxData }</span></p>
-                      </li>
-                      <li>
-                        <p>Valor cobrado: <span>R$ { cliente.valor }</span></p>
-                      </li>
-                    </ul>
+            <div className="info-overlay"></div>
+            <div className='info-container'>
+              <div>
+                <img className='cliente-img' src={ iconPessoa } alt="Icone de Perfil" />
+                <strong className='cliente-nome'>{ cliente.nome }</strong>
+              </div>
+              <ul>
+                <li>
+                  <p>Telefone/Celular: <span>{ cliente.telefone }</span></p>
+                </li>
+                <li>
+                  <p>Complemento: <span>{ cliente.complemento }</span></p>
+                </li>
+                <li>
+                  <p>Ultimo serviço: <span>{ cliente.ultimaData }</span></p>
+                </li>
+                <li>
+                  <p>Próximo serviço: <span>{ cliente.proxData }</span></p>
+                </li>
+                <li>
+                  <p>Valor cobrado: <span>R$ { cliente.valor }</span></p>
+                </li>
+              </ul>
 
-                    <button onClick={ fecharInfos } className='info-fechar'>Fechar</button>
-                  </div>
-                </>
-              }
+              <button onClick={ event => fecharInfos(event.target.className) } className='info-fechar'>Fechar</button>
+            </div>
+            
+            <div className="info-overlay"></div>
+            <div className='info-container'>
+              <div className='info-editar'>
+                <img className='cliente-img' src={ iconPessoa } alt="Icone de Perfil" />
+                <input 
+                    type='text'
+                    onChange={ event => setInputNome(event.target.value) }
+                    value={ inputNome }
+                />
+              </div>
+              <ul className='info-editar'>
+                <li>
+                  <label>Telefone/Celular:</label>
+                  <input 
+                    type="text"
+                    onChange={ event => setInputTelefone(event.target.value) }
+                    value={ inputTelefone }
+                  />
+                </li>
+                <li>
+                  <label>Complemento:</label>
+                  <input 
+                    type="text" 
+                    onChange={ event => setInputComplemento(event.target.value) }
+                    value={ inputComplemento }
+                  />
+                </li>
+                <li>
+                  <label>Ultimo serviço:</label>
+                  <input 
+                    type="text"
+                    onChange={ event => setInputUltimaData(event.target.value) }
+                    value={ inputUltimaData }
+                  />
+                </li>
+                <li>
+                  <label>Próximo serviço:</label>
+                  <input 
+                    type="text"
+                    onChange={ event => setInputProxData(event.target.value) }
+                    value={ inputProxData } 
+                  />
+                </li>
+                <li>
+                  <label>Valor cobrado:</label>
+                  <input 
+                    type="text"
+                    onChange={ event => setInputValor(event.target.value) }
+                    value={ inputValor }
+                  />
+                </li>
+              </ul>
+
+              <div className='info-editar-btn-div'>
+                <button onClick={ () => editarCliente(cliente.id) } className='info-editar-btn'>Concluir</button>
+                <button onClick={ event =>  fecharInfos(event.target.className) } className='info-editar-fechar'>Fechar</button>
+              </div>
+            </div>
           </div>
         </div>
       </main>
