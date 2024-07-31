@@ -87,14 +87,16 @@ function Clientes() {
     const refDoc = doc(db, 'clientes', id);
     await getDoc(refDoc)
     .then( snapshot => {
+      const snapshotData = snapshot.data()
+
       setCliente({
         id: snapshot.id,
-        nome: snapshot.data().nome,
-        telefone: snapshot.data().telefone,
-        complemento: snapshot.data().complemento,
-        ultimaData: snapshot.data().ultimaData,
-        proxData: snapshot.data().proxData,
-        valor: snapshot.data().valor
+        nome: snapshotData.nome,
+        telefone: snapshotData.telefone,
+        complemento: snapshotData.complemento,
+        ultimaData: snapshotData.ultimaData,
+        proxData: snapshotData.proxData,
+        valor: snapshotData.valor
       });
 
       if(classeBtn === 'cliente-info--btn') {
@@ -107,29 +109,28 @@ function Clientes() {
         infoContainer[1].style.display = 'flex';
       }
 
-
       function defineValorInicialInput() {
-        setInputNome(snapshot.data().nome);
-        setInputTelefone(snapshot.data().telefone);
-        setInputComplemento(snapshot.data().complemento);
-        setInputUltimaData(snapshot.data().ultimaData);
-        setInputProxData(snapshot.data().proxData);
-        setInputValor(snapshot.data().valor);
+        setInputNome(snapshotData.nome);
+        setInputTelefone(snapshotData.telefone);
+        setInputComplemento(snapshotData.complemento);
+        setInputUltimaData(snapshotData.ultimaData);
+        setInputProxData(snapshotData.proxData);
+        setInputValor(snapshotData.valor);
       }
     });
   }
 
   function fecharInfos(classeBtn) {
     if(classeBtn === 'info-fechar') {
-      document.querySelectorAll('.info-overlay')[0].style.display = 'none';
-      document.querySelectorAll('.info-container')[0].style.display = 'none';
-    } else if (classeBtn === 'info-editar-fechar') {
-      document.querySelectorAll('.info-overlay')[1].style.display = 'none';
-      document.querySelectorAll('.info-container')[1].style.display = 'none';
+      infoOverlay[0].style.display = 'none';
+      infoContainer[0].style.display = 'none';
+    } else if (classeBtn === 'info-editar-fechar' || classeBtn === 'info-editar-btn') {
+      infoOverlay[1].style.display = 'none';
+      infoContainer[1].style.display = 'none';
     }
   }
 
-  async function editarCliente(id) {
+  async function editarCliente(id, classeBtn) {
     const refDoc = doc(db, 'clientes', id);
 
     await updateDoc(refDoc, {
@@ -141,7 +142,7 @@ function Clientes() {
         valor: inputValor
     })
     .then(() => {
-      
+      fecharInfos(classeBtn)
     })
   }
 
@@ -268,7 +269,7 @@ function Clientes() {
               </ul>
 
               <div className='info-editar-btn-div'>
-                <button onClick={ () => editarCliente(cliente.id) } className='info-editar-btn'>Concluir</button>
+                <button onClick={ event => editarCliente(cliente.id, event.target.className) } className='info-editar-btn'>Concluir</button>
                 <button onClick={ event =>  fecharInfos(event.target.className) } className='info-editar-fechar'>Fechar</button>
               </div>
             </div>
