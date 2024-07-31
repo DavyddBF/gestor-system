@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
-import { collection, doc, getDoc, getDocs, onSnapshot, updateDoc } from 'firebase/firestore';
+import { 
+  collection, 
+  doc, 
+  getDoc, 
+  getDocs, 
+  onSnapshot, 
+  updateDoc 
+} from 'firebase/firestore';
 import { db } from '../../firebase';
 import iconPessoa from '../../assets/pessoa-icon.svg';
 
@@ -19,6 +26,9 @@ function Clientes() {
   const [inputUltimaData, setInputUltimaData] = useState('');
   const [inputProxData, setInputProxData] = useState('');
   const [inputValor, setInputValor] = useState('');
+
+  const infoOverlay = document.querySelectorAll('.info-overlay');
+  const infoContainer = document.querySelectorAll('.info-container');
 
   useEffect(() => {
     async function carregaClientes() {
@@ -88,21 +98,24 @@ function Clientes() {
       });
 
       if(classeBtn === 'cliente-info--btn') {
-        document.querySelectorAll('.info-overlay')[0].style.display = 'block';
-        document.querySelectorAll('.info-container')[0].style.display = 'flex';
+        infoOverlay[0].style.display = 'block';
+        infoContainer[0].style.display = 'flex';
       } else if (classeBtn === 'cliente-btn--editar') {
+        defineValorInicialInput();
+
+        infoOverlay[1].style.display = 'block';
+        infoContainer[1].style.display = 'flex';
+      }
+
+
+      function defineValorInicialInput() {
         setInputNome(snapshot.data().nome);
         setInputTelefone(snapshot.data().telefone);
         setInputComplemento(snapshot.data().complemento);
         setInputUltimaData(snapshot.data().ultimaData);
         setInputProxData(snapshot.data().proxData);
         setInputValor(snapshot.data().valor);
-
-        document.querySelectorAll('.info-overlay')[1].style.display = 'block';
-        document.querySelectorAll('.info-container')[1].style.display = 'flex';
-        
       }
-
     });
   }
 
@@ -128,7 +141,7 @@ function Clientes() {
         valor: inputValor
     })
     .then(() => {
-
+      
     })
   }
 
