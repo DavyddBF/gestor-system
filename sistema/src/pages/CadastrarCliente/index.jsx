@@ -11,7 +11,13 @@ function CadastrarCliente() {
         <div className="main-div">
           <Nav/>
           
-          
+          <div className='cadastrar-cliente-container'>
+            <div>
+              <p className='cadastrar-cliente-p'>Cadastrar um novo Cliente:</p>
+
+              <button className='cadastrar-cliente-btn'>Cadastrar</button>
+            </div>
+          </div>
         </div>
       </main>
     </>
