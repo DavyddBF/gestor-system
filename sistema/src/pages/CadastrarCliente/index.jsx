@@ -17,6 +17,46 @@ function CadastrarCliente() {
 
               <button className='cadastrar-cliente-btn'>Cadastrar</button>
             </div>
+
+            <div>
+              <div>
+                <label>Nome do Cliente:</label>
+                <input 
+                  type="text" 
+                  placeholder='Digite o nome do Cliente'
+                />
+
+                <label>Telefone/Celular:</label>
+                <input 
+                  type="text"
+                  placeholder='Ex: (12) 3 4567-8998'
+                />
+
+                <label>Complemento:</label>
+                <input 
+                  type="text"
+                  placeholder='Ex: Casa, Condomínio, Lote...'
+                />
+
+                <label>Ultimo serviço:</label>
+                <input 
+                  type="text"
+                  placeholder='Ex: 01/07' 
+                />
+
+                <label>Próximo serviço:</label>
+                <input 
+                  type="text" 
+                  placeholder='Ex: 15/07'
+                />
+
+                <label>Valor cobrado:</label>
+                <input 
+                  type="text"
+                  placeholder='Ex: 100,00'
+                />
+              </div>
+            </div>
           </div>
         </div>
       </main>
