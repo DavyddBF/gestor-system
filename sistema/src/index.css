@@ -8,9 +8,13 @@
 button {
   border: none;
   border-radius: 5px;
-  background-color: #00a2ff;
+  background-color: #008ddf;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
   transition: all .5s;
+}
+
+button:hover {
+  background-color: #006ead;
 }
