@@ -6,6 +6,10 @@
 }
 
 button {
+  border: none;
+  border-radius: 5px;
+  background-color: #00a2ff;
+  color: #fff;
   cursor: pointer;
   transition: all .5s;
 }
