@@ -10,6 +10,7 @@ button {
   border-radius: 5px;
   background-color: #00a2ff;
   color: #fff;
+  font-weight: 600;
   cursor: pointer;
   transition: all .5s;
 }
