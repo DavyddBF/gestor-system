@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.cadastrar-cliente-container div {
+.cadastrar-cliente--btn-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,4 +32,48 @@
 .cadastrar-cliente-btn:hover {
   color: #fff;
   background-color: #4fa7bd;
+}
+
+.cadastrar-overlay {
+  display: block;
+  background-color: rgb(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cadastrar-cliente {
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 2rem;
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cadastrar-cliente h2 {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.cadastrar-cliente-campo {
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  margin: 1rem;
+}
+
+.cadastrar-cliente-btns {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cadastrar-cliente-btns {
+  
 }
