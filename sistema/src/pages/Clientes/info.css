@@ -50,7 +50,6 @@
 .info-fechar,
 .info-editar-btn,
 .info-editar-fechar {
-  border: none;
   border-radius: 5px;
   margin-top: auto;
   padding: .5rem 2rem;
