@@ -75,5 +75,11 @@
 }
 
 .cadastrar-cliente-btns button {
+  margin-top: 4rem;
+  padding: .5rem 2rem;
+}
 
+.cadastrar-cliente-btns button:nth-child(2) {
+  background-color: #dddddd;
+  color: #000;
 }
