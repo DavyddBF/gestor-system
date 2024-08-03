@@ -48,7 +48,6 @@
 }
 
 .info-fechar,
-.info-editar-btn,
 .info-editar-fechar {
   border-radius: 5px;
   margin-top: auto;
@@ -58,7 +57,19 @@
   align-self: flex-end;
 }
 
-.info-fechar:hover {
+.info-editar-btn {
+  border-radius: 5px;
+  margin-top: auto;
+  padding: .5rem 2rem;
+  font-weight: 700;
+  align-self: flex-end;
+}
+
+.info-editar-fechar {
+  color: #000;
+}
+
+.info-editar-fechar:hover {
   background-color: #979797;
 }
 
