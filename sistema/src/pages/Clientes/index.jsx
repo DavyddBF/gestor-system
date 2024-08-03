@@ -15,7 +15,7 @@ import './clientes.css';
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
-import CardInfo from '../../components/cardInfo';
+import CardInfo from '../../components/clienteCard';
 
 function Clientes() {
   const [clientes, setClientes] = useState([]);
