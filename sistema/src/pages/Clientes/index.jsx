@@ -15,6 +15,7 @@ import './clientes.css';
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
+import CardInfo from '../../components/cardInfo';
 
 function Clientes() {
   const [clientes, setClientes] = useState([]);
@@ -188,7 +189,9 @@ function Clientes() {
                 })
               }
 
-            <div className="info-overlay"></div>
+            <CardInfo cliente={cliente} />
+
+            {/*<div className="info-overlay"></div>
             <div className='info-container'>
               <div>
                 <img className='cliente-img' src={ iconPessoa } alt="Icone de Perfil" />
@@ -213,7 +216,7 @@ function Clientes() {
               </ul>
 
               <button onClick={ event => fecharInfos(event.target.className) } className='info-fechar'>Fechar</button>
-            </div>
+            </div>*/}
             
             <div className="info-overlay"></div>
             <div className='info-container'>
